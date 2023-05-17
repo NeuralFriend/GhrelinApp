@@ -56,5 +56,24 @@
         android:id="@+id/fragmentActions"
         android:name="com.pavelt.ghrelin.fragments.FragmentActions"
         android:label="fragment_actions"
-        tools:layout="@layout/fragment_actions" />
+        tools:layout="@layout/fragment_actions" >
+        <action
+            android:id="@+id/action_fragmentActions_to_fragmentNonauthorizedMenu"
+            app:destination="@id/fragmentNonauthorizedMenu" />
+        <action
+            android:id="@+id/action_fragmentActions_to_fragmentAuthorization"
+            app:destination="@id/fragmentAuthorization" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNonauthorizedMenu"
+        android:name="com.pavelt.ghrelin.fragments.FragmentNonauthorizedMenu"
+        android:label="fragment_nonauthorized_menu"
+        tools:layout="@layout/fragment_nonauthorized_menu" >
+        <action
+            android:id="@+id/action_fragmentNonauthorizedMenu_to_fragmentActions"
+            app:destination="@id/fragmentActions" />
+        <action
+            android:id="@+id/action_fragmentNonauthorizedMenu_to_fragmentAuthorization"
+            app:destination="@id/fragmentAuthorization" />
+    </fragment>
 </navigation>

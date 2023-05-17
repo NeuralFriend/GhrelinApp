@@ -25,13 +25,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/foodWeightBasket"
+        android:id="@+id/foodPriceBasket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Масса"
+        android:layout_marginTop="12dp"
+        android:text="стоимость"
         app:layout_constraintStart_toEndOf="@+id/foodImageBasket"
         app:layout_constraintTop_toBottomOf="@+id/foodTitleBasket" />
+
+    <TextView
+        android:id="@+id/fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="руб."
+        app:layout_constraintStart_toEndOf="@+id/foodPriceBasket"
+        app:layout_constraintTop_toBottomOf="@+id/foodTitleBasket" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
+        android:text="Оформить заказ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

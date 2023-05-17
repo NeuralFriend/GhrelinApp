@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FragmentActions">
+    tools:context=".fragments.FragmentNonauthorizedMenu">
 
-    <ImageButton
-        android:id="@+id/btnLogIn"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="44dp"
-        android:text="Войти"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMenuNonAuth"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnMenu"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:text="Меню"
+    <Button
+        android:id="@+id/btnJoinFromRv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Войти"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLogIn"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvMenuNonAuth" />
 </androidx.constraintlayout.widget.ConstraintLayout>

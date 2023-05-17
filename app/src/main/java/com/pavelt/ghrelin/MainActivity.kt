@@ -1,6 +1,7 @@
 package com.pavelt.ghrelin
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -22,9 +23,16 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.bottomNavView
         val navController = findNavController(R.id.nav_host_fragment)
 
+        val backStack = navController.backQueue
+
+        val previousFragmentTag = backStack[backStack.size - 1].destination.label
+        if (previousFragmentTag == "fragmentAuthorization") {
+            finish()
+        }
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             navView.isVisible =
-                !(destination.id == R.id.fragmentActions || destination.id == R.id.fragmentAuthorization)
+                !(destination.id == R.id.fragmentActions || destination.id == R.id.fragmentAuthorization || destination.id == R.id.fragmentNonauthorizedMenu)
         }
 
         val appBarConfiguration = AppBarConfiguration(
@@ -35,18 +43,21 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-//        val callback = object : OnBackPressedCallback(
-//            true
-//        ) {
-//            override fun handleOnBackPressed() {
-//                navController.addOnDestinationChangedListener { _, destination, _ ->
-//                    if (destination.id == R.id.fragmentAuthorization) {
-//                        finish()
-//                    }
-//                }
-////                navController.navigate(R.id.fragmentCatalog)
-//            }
-//        }
-//        onBackPressedDispatcher.addCallback(callback)
+
+
+    }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment)
+        val backStack = navController.backQueue
+
+        val previousFragmentTag = backStack[backStack.size - 2].destination.label
+
+        if (previousFragmentTag == "fragment_authorization" || previousFragmentTag == "fragment_actions") {
+            moveTaskToBack(true)
+        }
+        else{
+            super.onBackPressed()
+        }
     }
 }

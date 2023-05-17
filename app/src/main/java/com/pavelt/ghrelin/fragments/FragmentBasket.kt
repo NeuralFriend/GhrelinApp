@@ -21,7 +21,7 @@ class FragmentBasket : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_basket, container, false)
 
         val tvTitle = view.findViewById<TextView>(R.id.foodTitleBasket)
-        val tvWeight = view.findViewById<TextView>(R.id.foodWeightBasket)
+        val tvWeight = view.findViewById<TextView>(R.id.foodPriceBasket)
         val foodImg = view.findViewById<ImageView>(R.id.foodImageBasket)
 //        val btnOrder = view.findViewById<Button>(R.id.BtnOrder)
         val repository = FoodRepositoryImpl()
@@ -29,7 +29,7 @@ class FragmentBasket : Fragment() {
         val dataById = id?.let { repository.getDataById(it) }
 
         tvTitle.text = dataById?.name
-        tvWeight.text = dataById?.weight
+        tvWeight.text = dataById?.price.toString()
         Glide.with(requireContext())
             .load(dataById?.image)
             .into(foodImg)
