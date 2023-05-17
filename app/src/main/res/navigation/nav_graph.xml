@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentAuthorization">
+    app:startDestination="@id/fragmentActions">
 
     <fragment
         android:id="@+id/fragmentAuthorization"
@@ -52,4 +52,9 @@
             android:id="@+id/action_fragmentBasket_to_fragmentCatalog2"
             app:destination="@id/fragmentCatalog" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentActions"
+        android:name="com.pavelt.ghrelin.fragments.FragmentActions"
+        android:label="fragment_actions"
+        tools:layout="@layout/fragment_actions" />
 </navigation>

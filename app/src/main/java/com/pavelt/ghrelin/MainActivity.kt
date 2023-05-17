@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             navView.isVisible =
-                destination.id != R.id.fragmentAuthorization
+                !(destination.id == R.id.fragmentActions || destination.id == R.id.fragmentAuthorization)
         }
 
         val appBarConfiguration = AppBarConfiguration(
@@ -35,18 +35,18 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val callback = object : OnBackPressedCallback(
-            true
-        ) {
-            override fun handleOnBackPressed() {
-                navController.addOnDestinationChangedListener { _, destination, _ ->
-                    if (destination.id == R.id.fragmentAuthorization){
-                        finish()
-                    }
-                }
-//                navController.navigate(R.id.fragmentCatalog)
-            }
-        }
-        onBackPressedDispatcher.addCallback(callback)
+//        val callback = object : OnBackPressedCallback(
+//            true
+//        ) {
+//            override fun handleOnBackPressed() {
+//                navController.addOnDestinationChangedListener { _, destination, _ ->
+//                    if (destination.id == R.id.fragmentAuthorization) {
+//                        finish()
+//                    }
+//                }
+////                navController.navigate(R.id.fragmentCatalog)
+//            }
+//        }
+//        onBackPressedDispatcher.addCallback(callback)
     }
 }
