@@ -43,8 +43,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
-
     }
 
     override fun onBackPressed() {
@@ -55,8 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         if (previousFragmentTag == "fragment_authorization" || previousFragmentTag == "fragment_actions") {
             moveTaskToBack(true)
-        }
-        else{
+        } else {
             super.onBackPressed()
         }
     }
