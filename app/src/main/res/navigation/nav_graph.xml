@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentAuthorization">
+
+    <fragment
+        android:id="@+id/fragmentAuthorization"
+        android:name="com.pavelt.ghrelin.fragments.FragmentAuthorization"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_authorization" />
+    <fragment
+        android:id="@+id/fragmentCatalog"
+        android:name="com.pavelt.ghrelin.fragments.FragmentCatalog"
+        android:label="fragment_catalog"
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_fragmentCatalog_to_fragmentFoodDetail"
+            app:destination="@id/fragmentFoodDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPersonalArea"
+        android:name="com.pavelt.ghrelin.fragments.FragmentPersonalArea"
+        android:label="fragment_personal_area"
+        tools:layout="@layout/fragment_personal_area" />
+    <fragment
+        android:id="@+id/fragmentFoodDetail"
+        android:name="com.pavelt.ghrelin.fragments.FragmentFoodDetail"
+        android:label="fragment_food_detail"
+        tools:layout="@layout/fragment_food_detail" >
+        <action
+            android:id="@+id/action_fragmentFoodDetail_to_fragmentBasket"
+            app:destination="@id/fragmentBasket" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPizzaMenu"
+        android:name="com.pavelt.ghrelin.fragments.FragmentPizzaMenu"
+        android:label="fragment_pizza_menu"
+        tools:layout="@layout/fragment_pizza_menu" />
+    <fragment
+        android:id="@+id/fragmentRollMenu"
+        android:name="com.pavelt.ghrelin.fragments.FragmentRollMenu"
+        android:label="fragment_roll_menu"
+        tools:layout="@layout/fragment_roll_menu" />
+    <fragment
+        android:id="@+id/fragmentBasket"
+        android:name="com.pavelt.ghrelin.fragments.FragmentBasket"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" >
+        <action
+            android:id="@+id/action_fragmentBasket_to_fragmentCatalog2"
+            app:destination="@id/fragmentCatalog" />
+    </fragment>
+</navigation>
