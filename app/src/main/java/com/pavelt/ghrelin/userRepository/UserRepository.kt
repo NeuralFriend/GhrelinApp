@@ -1,6 +1,6 @@
 package com.pavelt.ghrelin.userRepository
 
-import com.pavelt.ghrelin.model.User
+import com.pavelt.ghrelin.domain.User
 
 interface UserRepository {
     fun getUserById(id: Int): User?
@@ -9,5 +9,5 @@ interface UserRepository {
 
     fun getUserPassword(login: String): User?
 
-    fun findUserBy(login: String, password: String): Int?
+    fun findUserBy(login: String, password: String): User?
 }

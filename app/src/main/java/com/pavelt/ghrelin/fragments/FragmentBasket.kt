@@ -1,39 +1,40 @@
 package com.pavelt.ghrelin.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import com.bumptech.glide.Glide
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pavelt.ghrelin.R
-import com.pavelt.ghrelin.classes.menuRecyclerView.FoodRepositoryImpl
+import com.pavelt.ghrelin.data.AppStateRepository
+import com.pavelt.ghrelin.databinding.FragmentBasketBinding
+import com.pavelt.ghrelin.domain.Order
+import kotlinx.coroutines.launch
 
-class FragmentBasket : Fragment() {
+class FragmentBasket : Fragment(R.layout.fragment_basket) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view =  inflater.inflate(R.layout.fragment_basket, container, false)
+    private val binding by viewBinding(FragmentBasketBinding::bind)
 
-        val tvTitle = view.findViewById<TextView>(R.id.foodTitleBasket)
-        val tvWeight = view.findViewById<TextView>(R.id.foodPriceBasket)
-        val foodImg = view.findViewById<ImageView>(R.id.foodImageBasket)
-//        val btnOrder = view.findViewById<Button>(R.id.BtnOrder)
-        val repository = FoodRepositoryImpl()
-        val id = arguments?.getInt("id")
-        val dataById = id?.let { repository.getDataById(it) }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = binding.run {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            val cartItems = AppStateRepository.get().cart.items
+            // todo render items list
+        }
+        // todo table number input
+        btnCreateOrder.setOnClickListener { createOrder(tableNumber = 0) }
+    }
 
-        tvTitle.text = dataById?.name
-        tvWeight.text = dataById?.price.toString()
-        Glide.with(requireContext())
-            .load(dataById?.image)
-            .into(foodImg)
-
-        return view
+    private fun createOrder(tableNumber: Int) = lifecycleScope.launch {
+        AppStateRepository.update { oldAppState ->
+            val items = oldAppState.cart.items
+            val newOrder = Order(
+                items = items,
+                tableNumber = tableNumber,
+            )
+            oldAppState
+                .withNewOrder(newOrder)
+                .withClearCart()
+        }
     }
 }

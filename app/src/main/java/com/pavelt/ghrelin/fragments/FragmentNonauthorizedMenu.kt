@@ -1,20 +1,19 @@
 package com.pavelt.ghrelin.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pavelt.ghrelin.R
 import com.pavelt.ghrelin.classes.menuRecyclerView.CustomRecyclerAdapter
-import com.pavelt.ghrelin.classes.menuRecyclerView.FoodRepositoryImpl
 import com.pavelt.ghrelin.classes.menuRecyclerView.OnItemClickListener
+import com.pavelt.ghrelin.domain.FoodMock
 
 class FragmentNonauthorizedMenu : Fragment(), OnItemClickListener {
 
@@ -24,11 +23,9 @@ class FragmentNonauthorizedMenu : Fragment(), OnItemClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_nonauthorized_menu, container, false)
 
-        val rep = FoodRepositoryImpl()
-
         val recyclerView: RecyclerView = view.findViewById(R.id.rvMenuNonAuth)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = CustomRecyclerAdapter(rep.data, this)
+        recyclerView.adapter = CustomRecyclerAdapter(FoodMock.data, this)
 
         val btnLogin = view.findViewById<Button>(R.id.btnJoinFromRv)
 

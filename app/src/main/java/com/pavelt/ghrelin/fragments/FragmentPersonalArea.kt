@@ -1,15 +1,17 @@
 package com.pavelt.ghrelin.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.pavelt.ghrelin.R
-import com.pavelt.ghrelin.userRepository.UserRepositoryImpl
+import com.pavelt.ghrelin.data.AppStateRepository
+import kotlinx.coroutines.launch
 
 class FragmentPersonalArea : Fragment() {
 
@@ -23,12 +25,11 @@ class FragmentPersonalArea : Fragment() {
         val tvRole = view.findViewById<TextView>(R.id.userRole)
         val btnLogOut = view.findViewById<Button>(R.id.btnLogOut)
 
-        val rep = UserRepositoryImpl()
-        val user = arguments?.getInt("id")
-        val userRole = rep.data.find { it.id == user }
-
-        tvUserName.text = userRole?.firstName
-        tvRole.text = userRole?.lastName
+        lifecycleScope.launch {
+            val user = AppStateRepository.get().currUser
+            tvUserName.text = user?.firstName
+            tvRole.text = user?.lastName
+        }
 
         btnLogOut.setOnClickListener {
             findNavController().navigate(R.id.fragmentAuthorization)

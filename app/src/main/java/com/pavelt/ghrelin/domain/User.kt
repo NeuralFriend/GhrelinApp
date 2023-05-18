@@ -1,4 +1,4 @@
-package com.pavelt.ghrelin.model
+package com.pavelt.ghrelin.domain
 
 import kotlinx.serialization.Serializable
 
@@ -9,5 +9,9 @@ data class User(
     val lastName: String,
     val login: String,
     val password: String,
-    val token: String
+    val role: UserRole,
 )
+
+enum class UserRole {
+    CLIENT, COOK, WAITER
+}
