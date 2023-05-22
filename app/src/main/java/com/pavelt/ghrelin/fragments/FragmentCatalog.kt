@@ -30,7 +30,7 @@ class FragmentCatalog : Fragment(), OnItemClickListener {
         return view
     }
 
-    override fun onItemClicked(position: Int, id: Int) {
+    override fun onItemClicked(position: Int, id: String) {
         val bundle = bundleOf("id" to id)
         findNavController().navigate(R.id.fragmentFoodDetail, bundle)
     }

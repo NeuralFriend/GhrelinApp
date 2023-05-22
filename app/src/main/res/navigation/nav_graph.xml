@@ -76,4 +76,19 @@
             android:id="@+id/action_fragmentNonauthorizedMenu_to_fragmentAuthorization"
             app:destination="@id/fragmentAuthorization" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentListOfOrders"
+        android:name="com.pavelt.ghrelin.fragments.FragmentListOfOrders"
+        android:label="fragment_list_of_orders"
+        tools:layout="@layout/fragment_list_of_orders" />
+    <fragment
+        android:id="@+id/fragmentListOfOrdersDetail"
+        android:name="com.pavelt.ghrelin.fragments.FragmentListOfOrdersDetail"
+        android:label="fragment_list_of_orders_detail"
+        tools:layout="@layout/fragment_list_of_orders_detail" />
+    <fragment
+        android:id="@+id/fragmentOrderInfo"
+        android:name="com.pavelt.ghrelin.FragmentOrderInfo"
+        android:label="fragment_order_info"
+        tools:layout="@layout/fragment_order_info" />
 </navigation>

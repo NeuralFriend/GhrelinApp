@@ -34,7 +34,7 @@ class FragmentNonauthorizedMenu : Fragment(), OnItemClickListener {
         return view
     }
 
-    override fun onItemClicked(position: Int, id: Int) {
+    override fun onItemClicked(position: Int, id: String) {
         Toast.makeText(requireContext(), "Для заказа нужно авторизоваться в приложении", Toast.LENGTH_SHORT).show()
     }
 }

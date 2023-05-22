@@ -15,7 +15,7 @@ class CustomRecyclerAdapter(var menu: List<Food>, val onItemClickListener: OnIte
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val foodName: TextView = itemView.findViewById(R.id.foodName)
-        val foodWeight: TextView = itemView.findViewById(R.id.foodWeight)
+        val foodPrice: TextView = itemView.findViewById(R.id.foodPrice)
         val imageView: ImageView = itemView.findViewById(R.id.toolsPhotos)
 
     }
@@ -32,7 +32,7 @@ class CustomRecyclerAdapter(var menu: List<Food>, val onItemClickListener: OnIte
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.apply {
             foodName.text = menu[position].name
-            foodWeight.text = menu[position].weight
+            foodPrice.text = menu[position].price.toString()
 
             Glide.with(holder.itemView.context)
                 .load(menu[position].imageUrl)
@@ -41,7 +41,7 @@ class CustomRecyclerAdapter(var menu: List<Food>, val onItemClickListener: OnIte
             val id = menu[position].id
 
             itemView.setOnClickListener {
-                onItemClickListener.onItemClicked(position, id)
+                onItemClickListener.onItemClicked(position, id.toString())
             }
         }
     }

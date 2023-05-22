@@ -20,13 +20,13 @@ class FragmentFoodDetail : Fragment(R.layout.fragment_food_detail) {
 
     private val binding by viewBinding(FragmentFoodDetailBinding::bind)
 
-    private val foodId: Int
-        get() = arguments?.getInt("id")!!
+    private val foodId: String
+        get() = arguments?.getString("id")!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = binding.run {
         super.onViewCreated(view, savedInstanceState)
 
-        val food = FoodMock.getFoodById(foodId)!!
+        val food = FoodMock.getFoodById(foodId.toInt())!!
         tvTitle.text = food.name
         tvWeight.text = food.weight
         Glide.with(requireContext())
@@ -38,7 +38,7 @@ class FragmentFoodDetail : Fragment(R.layout.fragment_food_detail) {
         AppStateRepository
             .observe()
             .onEach {
-                if (it.cart.hasItem(foodId)) {
+                if (it.cart.hasItem(foodId.toInt())) {
                     btnOrder.text = "Добавлено"
                     btnOrder.isEnabled = false
                 }
