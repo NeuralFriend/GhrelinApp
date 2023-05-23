@@ -38,48 +38,10 @@
         android:layout_height="52dp"
         android:ems="10"
         android:hint="введите номер стола"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/btnCreateOrder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewBasket" />
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/foodImageBasket"-->
-    <!--        android:layout_width="140dp"-->
-    <!--        android:layout_height="140dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/foodTitleBasket"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:text="Продукт"-->
-    <!--        android:textSize="20dp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/foodImageBasket"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/foodPriceBasket"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:layout_marginTop="12dp"-->
-    <!--        android:text="стоимость"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/foodImageBasket"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/foodTitleBasket" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/fff"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="8dp"-->
-    <!--        android:layout_marginTop="12dp"-->
-    <!--        android:text="руб."-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/foodPriceBasket"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/foodTitleBasket" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

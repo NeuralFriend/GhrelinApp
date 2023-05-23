@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
@@ -27,12 +28,12 @@ class FragmentBasket : Fragment(R.layout.fragment_basket) {
     private val binding by viewBinding(FragmentBasketBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = binding.run {
         super.onViewCreated(view, savedInstanceState)
+
         lifecycleScope.launch {
             val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewBasket)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             val cartItems = AppStateRepository.get().cart.items
             recyclerView.adapter = BasketRecyclerAdapter(cartItems.toList())
-            // todo render items list
         }
 
         btnCreateOrder.isEnabled = false
@@ -41,20 +42,39 @@ class FragmentBasket : Fragment(R.layout.fragment_basket) {
             btnCreateOrder.isEnabled = !text.isNullOrEmpty()
         }
 
-        // todo table number input
-        btnCreateOrder.setOnClickListener { createOrder(tableNumber = tableNumber.text.toString().toInt()) }
+        btnCreateOrder.setOnClickListener {
+            createOrder(tableNumber = tableNumber.text.toString().toInt())
+            Toast.makeText(
+                requireContext(),
+                "Заказ успешно создан. Номер вашего стола - ${tableNumber.text}",
+                Toast.LENGTH_LONG
+            ).show()
+            tableNumber.text.clear()
+            lifecycleScope.launch {
+                val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewBasket)
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                val cartItems = AppStateRepository.get().cart.items
+                recyclerView.adapter = BasketRecyclerAdapter(cartItems.toList())
+            }
+        }
     }
 
     private fun createOrder(tableNumber: Int) = lifecycleScope.launch {
-        AppStateRepository.update { oldAppState ->
-            val items = oldAppState.cart.items
-            val newOrder = Order(
-                items = items,
-                tableNumber = tableNumber,
-            )
-            oldAppState
-                .withNewOrder(newOrder)
-                .withClearCart()
+        try {
+            AppStateRepository.update { oldAppState ->
+                val items = oldAppState.cart.items
+                val newOrder = Order(
+                    items = items,
+                    tableNumber = tableNumber,
+                )
+                oldAppState
+                    .withNewOrder(newOrder)
+                    .withClearCart()
+            }
+        } catch (ex: Exception) {
+            Toast.makeText(requireContext(), "Заказ не может быть пустым", Toast.LENGTH_SHORT)
+                .show()
         }
+
     }
 }

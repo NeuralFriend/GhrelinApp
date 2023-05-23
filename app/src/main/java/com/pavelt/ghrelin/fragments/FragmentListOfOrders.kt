@@ -15,6 +15,7 @@ import com.pavelt.ghrelin.R
 import com.pavelt.ghrelin.classes.listOfOrdersRecyclerView.ListOfOrdersAdapter
 import com.pavelt.ghrelin.classes.menuRecyclerView.OnItemClickListener
 import com.pavelt.ghrelin.data.AppStateRepository
+import com.pavelt.ghrelin.domain.AppState
 import kotlinx.coroutines.launch
 
 class FragmentListOfOrders : Fragment(), OnItemClickListener {

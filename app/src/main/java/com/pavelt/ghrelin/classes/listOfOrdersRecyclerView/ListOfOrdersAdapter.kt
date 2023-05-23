@@ -1,5 +1,7 @@
 package com.pavelt.ghrelin.classes.listOfOrdersRecyclerView
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pavelt.ghrelin.R
 import com.pavelt.ghrelin.classes.menuRecyclerView.OnItemClickListener
 import com.pavelt.ghrelin.domain.Order
+import com.pavelt.ghrelin.domain.OrderStatus
 
 class ListOfOrdersAdapter(var orders: List<Order>, val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<ListOfOrdersAdapter.OrdersViewHolder>() {
@@ -40,6 +43,25 @@ class ListOfOrdersAdapter(var orders: List<Order>, val onItemClickListener: OnIt
 
             itemView.setOnClickListener {
                 onItemClickListener.onItemClicked(position, id)
+            }
+
+            when (orders[position].status) {
+                OrderStatus.COOKING -> {
+                    orderCost.setTextColor(Color.YELLOW)
+                }
+                OrderStatus.COOKED -> {
+                    orderCost.setTextColor(Color.GREEN)
+                }
+                OrderStatus.CREATED -> {
+                    orderCost.setTextColor(Color.RED)
+                }
+                OrderStatus.DELIVERED -> {
+                    orderCost.setTextColor(Color.GREEN)
+                }
+                OrderStatus.DELIVERING -> {
+                    orderCost.setTextColor(Color.YELLOW)
+                }
+                else -> {}
             }
         }
     }
