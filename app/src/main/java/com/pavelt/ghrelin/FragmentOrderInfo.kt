@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.pavelt.ghrelin.data.AppStateRepository
 import com.pavelt.ghrelin.domain.Order
 import com.pavelt.ghrelin.domain.OrderStatus
+import io.ktor.client.utils.EmptyContent.status
 import kotlinx.coroutines.launch
 
 class FragmentOrderInfo : Fragment() {
@@ -32,25 +34,38 @@ class FragmentOrderInfo : Fragment() {
             btnRefresh.isEnabled = !etTableNumb.text.isNullOrEmpty()
         }
 
+        fun getStatusText(status: OrderStatus): String {
+            return when (status) {
+                OrderStatus.CREATED -> "Заказ создан"
+                OrderStatus.COOKED -> "Заказ приготовлен"
+                OrderStatus.COOKING -> "Заказ готовится"
+                OrderStatus.DELIVERED -> "Заказ у вас, приятного аппетита!"
+                OrderStatus.DELIVERING -> "Заказ скоро будет у вас"
+                else ->
+                    "Извините, заказа на этот стол не существует"
+            }
+        }
+
         btnRefresh.setOnClickListener {
             lifecycleScope.launch {
                 val tableNumber = etTableNumb.text.toString().toInt()
+                val orders = mutableListOf<Order>()
                 val order = findOrderByTableNumber(tableNumber)
 
-                tvOrdSt.text = order?.status.toString()
-                tvTabNum.text = order?.tableNumber.toString()
+                if (order != null) {
+                    orders.add(order)
+                    val ooo = AppStateRepository.get()
+                    val newList = ooo.orders.toList().filter { it.tableNumber == tableNumber }
+                        .joinToString("\n") { getStatusText(it.status) }
 
-                when (order?.status) {
-                    OrderStatus.DELIVERED -> tvOrdSt.text = "Приятного аппетита!"
-                    OrderStatus.DELIVERING -> tvOrdSt.text = "Заказ скоро будет у вас"
-                    OrderStatus.COOKING -> tvOrdSt.text = "Повар готовит ваш заказ"
-                    OrderStatus.COOKED -> tvOrdSt.text = "Заказ ожидает официанта"
-                    OrderStatus.CANCELLED -> tvOrdSt.text = "Заказ отменен"
-                    OrderStatus.CREATED -> tvOrdSt.text = "Заказ создан"
-                    else -> {
-                        tvOrdSt.text = "Извините, заказа на этот стол не существует"
-                        tvTabNum.text = ""
-                    }
+                    tvTabNum.text = "Номер стола: " + order?.tableNumber.toString()
+                    tvOrdSt.text = newList
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "За этим столом нет заказов.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }

@@ -31,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/black"
         android:layout_margin="5dp"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -39,6 +40,7 @@
 
     <TextView
         android:id="@+id/tvFoodTitle"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -50,6 +52,7 @@
 
     <TextView
         android:id="@+id/textView12"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Заказ: "
@@ -61,6 +64,7 @@
 
     <TextView
         android:id="@+id/tvTableTitle"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"

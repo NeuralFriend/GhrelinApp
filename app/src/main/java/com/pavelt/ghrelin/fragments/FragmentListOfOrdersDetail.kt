@@ -46,7 +46,7 @@ class FragmentListOfOrdersDetail : Fragment(R.layout.fragment_list_of_orders_det
                     tvTableTitle.text = "Номер стола: ${order.tableNumber.toString()}"
                     val foodItems = order.items.toList()
                     Glide.with(requireContext())
-                        .load(foodItems.joinToString { food -> food.imageUrl })
+                        .load(foodItems[0].imageUrl)
                         .into(imageOfOrder)
                     tvFoodTitle.text = foodItems.joinToString { food -> food.name }
                     val totalCost = foodItems.sumOf { food -> food.price }
