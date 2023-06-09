@@ -8,13 +8,17 @@
     <fragment
         android:id="@+id/fragmentAuthorization"
         android:name="com.pavelt.ghrelin.fragments.FragmentAuthorization"
-        android:label="fragment_authorization"
-        tools:layout="@layout/fragment_authorization" />
+        android:label="Авторизация"
+        tools:layout="@layout/fragment_authorization" >
+        <action
+            android:id="@+id/action_fragmentAuthorization_to_fragmentPersonalArea"
+            app:destination="@id/fragmentPersonalArea" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentCatalog"
         android:name="com.pavelt.ghrelin.fragments.FragmentCatalog"
-        android:label="fragment_catalog"
-        tools:layout="@layout/fragment_catalog" >
+        android:label="Меню"
+        tools:layout="@layout/fragment_catalog">
         <action
             android:id="@+id/action_fragmentCatalog_to_fragmentFoodDetail"
             app:destination="@id/fragmentFoodDetail" />
@@ -22,41 +26,40 @@
     <fragment
         android:id="@+id/fragmentPersonalArea"
         android:name="com.pavelt.ghrelin.fragments.FragmentPersonalArea"
-        android:label="fragment_personal_area"
-        tools:layout="@layout/fragment_personal_area" />
+        android:label="Личный кабинет"
+        tools:layout="@layout/fragment_personal_area" >
+        <action
+            android:id="@+id/action_fragmentPersonalArea_to_fragmentOrderInfo"
+            app:destination="@id/fragmentOrderInfo" />
+        <action
+            android:id="@+id/action_fragmentPersonalArea_to_fragmentListOfOrders"
+            app:destination="@id/fragmentListOfOrders" />
+        <action
+            android:id="@+id/action_fragmentPersonalArea_to_fragmentCatalog"
+            app:destination="@id/fragmentCatalog" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentFoodDetail"
         android:name="com.pavelt.ghrelin.fragments.FragmentFoodDetail"
-        android:label="fragment_food_detail"
-        tools:layout="@layout/fragment_food_detail" >
+        android:label="Блюдо"
+        tools:layout="@layout/fragment_food_detail">
         <action
             android:id="@+id/action_fragmentFoodDetail_to_fragmentBasket"
             app:destination="@id/fragmentBasket" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentPizzaMenu"
-        android:name="com.pavelt.ghrelin.fragments.FragmentPizzaMenu"
-        android:label="fragment_pizza_menu"
-        tools:layout="@layout/fragment_pizza_menu" />
-    <fragment
-        android:id="@+id/fragmentRollMenu"
-        android:name="com.pavelt.ghrelin.fragments.FragmentRollMenu"
-        android:label="fragment_roll_menu"
-        tools:layout="@layout/fragment_roll_menu" />
-    <fragment
         android:id="@+id/fragmentBasket"
         android:name="com.pavelt.ghrelin.fragments.FragmentBasket"
-        android:label="fragment_basket"
-        tools:layout="@layout/fragment_basket" >
+        android:label="Корзина"
+        tools:layout="@layout/fragment_basket">
         <action
-            android:id="@+id/action_fragmentBasket_to_fragmentCatalog2"
+            android:id="@+id/action_fragmentBasket_to_fragmentCatalog"
             app:destination="@id/fragmentCatalog" />
     </fragment>
     <fragment
         android:id="@+id/fragmentActions"
         android:name="com.pavelt.ghrelin.fragments.FragmentActions"
-        android:label="fragment_actions"
-        tools:layout="@layout/fragment_actions" >
+        tools:layout="@layout/fragment_actions">
         <action
             android:id="@+id/action_fragmentActions_to_fragmentNonauthorizedMenu"
             app:destination="@id/fragmentNonauthorizedMenu" />
@@ -67,11 +70,8 @@
     <fragment
         android:id="@+id/fragmentNonauthorizedMenu"
         android:name="com.pavelt.ghrelin.fragments.FragmentNonauthorizedMenu"
-        android:label="fragment_nonauthorized_menu"
-        tools:layout="@layout/fragment_nonauthorized_menu" >
-        <action
-            android:id="@+id/action_fragmentNonauthorizedMenu_to_fragmentActions"
-            app:destination="@id/fragmentActions" />
+        android:label="Меню"
+        tools:layout="@layout/fragment_nonauthorized_menu">
         <action
             android:id="@+id/action_fragmentNonauthorizedMenu_to_fragmentAuthorization"
             app:destination="@id/fragmentAuthorization" />
@@ -79,16 +79,20 @@
     <fragment
         android:id="@+id/fragmentListOfOrders"
         android:name="com.pavelt.ghrelin.fragments.FragmentListOfOrders"
-        android:label="fragment_list_of_orders"
-        tools:layout="@layout/fragment_list_of_orders" />
+        android:label="Список заказов"
+        tools:layout="@layout/fragment_list_of_orders" >
+        <action
+            android:id="@+id/action_fragmentListOfOrders_to_fragmentListOfOrdersDetail2"
+            app:destination="@id/fragmentListOfOrdersDetail" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentListOfOrdersDetail"
         android:name="com.pavelt.ghrelin.fragments.FragmentListOfOrdersDetail"
-        android:label="fragment_list_of_orders_detail"
+        android:label="Детальная информация о заказе"
         tools:layout="@layout/fragment_list_of_orders_detail" />
     <fragment
         android:id="@+id/fragmentOrderInfo"
         android:name="com.pavelt.ghrelin.FragmentOrderInfo"
-        android:label="fragment_order_info"
+        android:label="Информация о заказе"
         tools:layout="@layout/fragment_order_info" />
 </navigation>

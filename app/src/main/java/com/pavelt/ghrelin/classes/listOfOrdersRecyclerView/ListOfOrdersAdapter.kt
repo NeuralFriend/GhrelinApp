@@ -49,18 +49,23 @@ class ListOfOrdersAdapter(var orders: List<Order>, val onItemClickListener: OnIt
                 OrderStatus.COOKING -> {
                     orderCost.setTextColor(Color.YELLOW)
                 }
+
                 OrderStatus.COOKED -> {
                     orderCost.setTextColor(Color.GREEN)
                 }
+
                 OrderStatus.CREATED -> {
                     orderCost.setTextColor(Color.RED)
                 }
+
                 OrderStatus.DELIVERED -> {
                     orderCost.setTextColor(Color.GREEN)
                 }
+
                 OrderStatus.DELIVERING -> {
                     orderCost.setTextColor(Color.YELLOW)
                 }
+
                 else -> {}
             }
         }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.system.Os.bind
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -93,6 +94,7 @@ class FragmentListOfOrdersDetail : Fragment(R.layout.fragment_list_of_orders_det
                     appState.copy(orders = updatedOrders.toSet())
                 }
             }
+            Toast.makeText(requireContext(), "Вы приняли заказ", Toast.LENGTH_SHORT).show()
             btnCookAccept.isEnabled = false
             btnOrderDoneCook.isEnabled = true
         }
@@ -110,6 +112,8 @@ class FragmentListOfOrdersDetail : Fragment(R.layout.fragment_list_of_orders_det
                     }
                     appState.copy(orders = updatedOrders.toSet())
                 }
+                Toast.makeText(requireContext(), "Вы завершили заказ", Toast.LENGTH_SHORT).show()
+
             }
         }
 
@@ -126,6 +130,8 @@ class FragmentListOfOrdersDetail : Fragment(R.layout.fragment_list_of_orders_det
                     }
                     appState.copy(orders = updatedOrders.toSet())
                 }
+                Toast.makeText(requireContext(), "Вы приняли заказ", Toast.LENGTH_SHORT).show()
+
             }
         }
 
@@ -142,6 +148,8 @@ class FragmentListOfOrdersDetail : Fragment(R.layout.fragment_list_of_orders_det
                     }
                     appState.copy(orders = updatedOrders.toSet())
                 }
+                Toast.makeText(requireContext(), "Вы завершили заказ. Не забудьте получить оплату", Toast.LENGTH_SHORT).show()
+
             }
         }
     }

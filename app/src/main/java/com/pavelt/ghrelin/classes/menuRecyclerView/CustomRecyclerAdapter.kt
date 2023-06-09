@@ -32,7 +32,7 @@ class CustomRecyclerAdapter(var menu: List<Food>, val onItemClickListener: OnIte
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.apply {
             foodName.text = menu[position].name
-            foodPrice.text = menu[position].price.toString()
+            foodPrice.text = menu[position].price.toString() + " руб."
 
             Glide.with(holder.itemView.context)
                 .load(menu[position].imageUrl)
